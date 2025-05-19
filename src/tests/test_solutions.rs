@@ -1,35 +1,7 @@
-use super::*;
-use paste::paste;
+use crate::solutions::Solution;
+use crate::tests::common;
+use crate::{test_cases, test_cases_multi};
 
-/// 通用断言宏，适合单输入单输出的测试
-macro_rules! test_cases {
-    ($func:ident, [ $( ($input:expr, $expected:expr) ),* $(,)?]) => {
-        paste! {
-            #[test]
-            fn [<test_ $func>]() {
-                $(
-                    let result = Solution::$func($input);
-                    assert_eq!(result, $expected);
-                )*
-            }
-        }
-    };
-}
-
-/// 通用断言宏，适合多输入单输出的测试
-macro_rules! test_cases_multi {
-    ($func:ident, [ $( ( ($($input:expr),*), $expected:expr ) ),* $(,)? ]) => {
-        paste! {
-            #[test]
-            fn [<test_ $func>]() {
-                $(
-                    let result = Solution::$func($($input),*);
-                    assert_eq!(result, $expected);
-                )*
-            }
-        }
-    };
-}
 
 #[test]
 fn test_merge() {
@@ -89,14 +61,14 @@ fn test_rotate() {
     }
 }
 
-test_cases!(max_profit, [
+test_cases!(Solution, max_profit, [
     (vec![7, 1, 5, 3, 6, 4], 5),
     (vec![7, 6, 4, 3, 1], 0),
     (vec![2, 1], 0),
     (vec![1], 0),
 ]);
 
-test_cases!(max_profit2, [
+test_cases!(Solution, max_profit2, [
     (vec![7, 1, 5, 3, 6, 4], 7),
     (vec![1, 2, 3, 4, 5], 4),
     (vec![7, 6, 4, 3, 1], 0),
@@ -104,23 +76,23 @@ test_cases!(max_profit2, [
     (vec![1], 0),
 ]);
 
-test_cases!(majority_element, [
+test_cases!(Solution, majority_element, [
     (vec![3, 2, 3], 3),
     (vec![2, 2, 1, 1, 1, 2, 2], 2),
     (vec![1], 1),
     (vec![0], 0),
 ]);
 
-test_cases!(cap_jump, [
+test_cases!(Solution, cap_jump, [
     (vec![2, 3, 1, 1, 4], true),
 ]);
 
-test_cases!(cas_jump2, [
+test_cases!(Solution, cas_jump2, [
     (vec![2, 3, 1, 1, 4], 2),
     (vec![2, 3, 0, 1, 4], 2),
 ]);
 
-test_cases!(h_index, [
+test_cases!(Solution, h_index, [
     (vec![3, 0, 6, 1, 5], 3),
     (vec![1, 5, 1], 1),
     (vec![0], 0),
@@ -128,7 +100,7 @@ test_cases!(h_index, [
 
 #[test]
 fn test_randomized_set() {
-    use super::randomized_set::RandomizedSet;
+    use crate::solutions::randomized_set::RandomizedSet;
     let mut set = RandomizedSet::new();
     assert_eq!(set.insert(1), true);
     assert_eq!(set.remove(2), false);
@@ -140,36 +112,36 @@ fn test_randomized_set() {
     assert!(set.get_random() == 2);
 }
 
-test_cases!(product_except_self, [
+test_cases!(Solution, product_except_self, [
     (vec![1, 2, 3, 4], vec![24, 12, 8, 6]),
 ]);
 
-test_cases_multi!(can_complete_circuit, [
+test_cases_multi!(Solution, can_complete_circuit, [
     ((vec![1, 2, 3, 4, 5], vec![3, 4, 5, 1, 2]), 3),
     ((vec![2, 3, 4], vec![3, 4, 3]), -1),
     ((vec![5, 8, 2, 8], vec![6, 5, 6, 6]), 3),
 ]);
 
-test_cases!(candy, [
+test_cases!(Solution, candy, [
     (vec![1, 0, 2], 5),
     (vec![1, 2, 2], 4),
     (vec![1, 3, 2, 2, 1], 7),
     (vec![1, 2, 3, 1, 0], 9),
 ]);
 
-test_cases!(trap, [
+test_cases!(Solution, trap, [
     (vec![0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1], 6),
     (vec![4, 2, 0, 3, 2, 5], 9),
 ]);
 
-test_cases!(roman_to_int, [
+test_cases!(Solution, roman_to_int, [
     (String::from("III"), 3),
     (String::from("IV"), 4),
     (String::from("LVIII"), 58),
     (String::from("MCMXCIV"), 1994),
 ]);
 
-test_cases!(int_to_roman, [
+test_cases!(Solution, int_to_roman, [
     (3, String::from("III")),
     (4, String::from("IV")),
     (58, String::from("LVIII")),
@@ -177,7 +149,7 @@ test_cases!(int_to_roman, [
     (3999, String::from("MMMCMXCIX")),
 ]);
 
-test_cases_multi!(is_anagram, [
+test_cases_multi!(Solution, is_anagram, [
     ((String::from("anagram"), String::from("nagaram")), true),
     ((String::from("rat"), String::from("car")), false),
     ((String::from(""), String::from("")), true),
@@ -206,14 +178,14 @@ fn test_group_anagrams() {
     }
 }
 
-test_cases!(trailing_zeros, [
+test_cases!(Solution, trailing_zeros, [
     (5, 1),
     (3, 0),
     (0, 0),
     (25, 6),
 ]);
 
-test_cases!(my_sqrt, [
+test_cases!(Solution, my_sqrt, [
     (0, 0),
     (1, 1),
     (2, 1),
@@ -223,34 +195,34 @@ test_cases!(my_sqrt, [
     (2147483647, 46340),
 ]);
 
-test_cases!(max_points, [
+test_cases!(Solution, max_points, [
     (vec![vec![1,1], vec![2,2], vec![3,3]], 3),
     (vec![vec![1,1], vec![3,2], vec![5,3], vec![4,1], vec![2,3], vec![1,4]], 4),
 ]);
 
-test_cases!(find_min_arrow_shots, [
+test_cases!(Solution, find_min_arrow_shots, [
     (vec![vec![10,16], vec![2,8], vec![1,6], vec![7,12]], 2),
     (vec![vec![1,2], vec![2,3], vec![3,4], vec![4,5]], 2),
 ]);
 
-test_cases!(generate_parenthesis, [
+test_cases!(Solution, generate_parenthesis, [
     (3, vec!["((()))","(()())","(())()","()(())","()()()"]),
     (1, vec!["()"]),
 ]);
 
-test_cases_multi!(min_sub_array_len, [
+test_cases_multi!(Solution, min_sub_array_len, [
     ((7, vec![2, 3, 1, 2, 4, 3]), 2),
     ((4, vec![1, 4, 4]), 1),
     ((11, vec![1, 1, 1, 2, 1, 1, 1, 1]), 0),
 ]);
 
-test_cases!(length_of_longest_substring, [
+test_cases!(Solution, length_of_longest_substring, [
     (String::from("abcabcbb"), 3),
     (String::from("bbbbb"), 1),
     (String::from("pwwkew"), 3),
 ]);
 
-test_cases_multi!(find_substring, [
+test_cases_multi!(Solution, find_substring, [
     ((String::from("barfoothefoobarman"), 
     vec![String::from("foo"), String::from("bar")]), 
     vec![0, 9]),
@@ -261,3 +233,62 @@ test_cases_multi!(find_substring, [
     vec![String::from("word"), String::from("good"), String::from("best"), String::from("good")]), 
     vec![8]),
 ]);
+
+#[test]
+fn test_lru_cache(){
+    common::setup_logging();
+
+    use crate::solutions::lru_cache::LRUCache;
+    let mut cache = LRUCache::new(10);
+    cache.put(10, 13);
+    cache.put(3, 17);
+    cache.put(6, 11);
+    cache.put(10, 5);
+    cache.put(9, 10);
+    assert_eq!(cache.get(13), -1);
+    cache.put(2, 19);
+    assert_eq!(cache.get(2), 19);
+    assert_eq!(cache.get(3), 17);
+    cache.put(5, 25);
+    assert_eq!(cache.get(8), -1);
+    cache.put(9, 22);
+    cache.put(5, 5);
+    cache.put(1, 30);
+    assert_eq!(cache.get(11), -1);
+    cache.put(9, 12);
+    assert_eq!(cache.get(7), -1);
+    assert_eq!(cache.get(5), 5);
+    assert_eq!(cache.get(8), -1);
+    assert_eq!(cache.get(9), 12);
+    cache.put(4, 30);
+    cache.put(9, 3);
+    assert_eq!(cache.get(9), 3);
+    assert_eq!(cache.get(10), 5);
+    assert_eq!(cache.get(10), 5);
+    cache.put(6, 14);
+    cache.put(3, 1);
+    assert_eq!(cache.get(3), 1);
+    cache.put(10, 11);
+    assert_eq!(cache.get(8), -1);
+    cache.put(2, 14);
+    assert_eq!(cache.get(1), 30);
+    assert_eq!(cache.get(5), 5);
+    assert_eq!(cache.get(4), 30);
+    cache.put(11, 4);
+    cache.put(12, 24);
+    cache.put(5, 18);
+    assert_eq!(cache.get(13), -1);
+    cache.put(7, 23);
+    assert_eq!(cache.get(8), -1);
+    assert_eq!(cache.get(12), 24);
+    cache.put(3, 27);
+    cache.put(2, 12);
+    assert_eq!(cache.get(5), 18);
+    cache.put(2, 9);
+    cache.put(13, 4);
+    cache.put(8, 18);
+    cache.put(1, 7);
+    assert_eq!(cache.get(6), -1); 
+
+
+}
