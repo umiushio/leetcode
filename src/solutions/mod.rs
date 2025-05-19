@@ -1,0 +1,34 @@
+pub struct Solution;
+
+pub mod merge;
+pub mod remove_element;
+pub mod remove_duplicates;
+pub mod remove_duplicates2;
+pub mod rotate;
+pub mod max_profit;
+pub mod max_profit2;
+pub mod majority_element;
+pub mod cap_jump;
+pub mod cap_jump2;
+pub mod h_index;
+pub mod randomized_set;
+pub mod product_except_self;
+pub mod can_complete_circuit;
+pub mod candy;
+pub mod trap;
+pub mod roman_to_int;
+pub mod int_to_roman;
+pub mod is_anagram;
+pub mod group_anagrams;
+pub mod trailing_zeros;
+pub mod my_sqrt;
+pub mod max_points;
+pub mod find_min_arrow_shots;
+pub mod generate_parenthesis;
+pub mod min_sub_array_len;
+pub mod length_of_longest_substring;
+pub mod find_substring;
+// pub mod lru_cache;
+
+#[cfg(test)]
+mod tests;
