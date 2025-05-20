@@ -29,3 +29,6 @@ pub mod min_sub_array_len;
 pub mod length_of_longest_substring;
 pub mod find_substring;
 pub mod lru_cache;
+pub mod length_of_last_word;
+pub mod longest_common_prefix;
+pub mod reverse_words;

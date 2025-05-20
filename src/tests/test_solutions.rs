@@ -292,3 +292,18 @@ fn test_lru_cache(){
 
 
 }
+
+test_cases!(Solution, length_of_last_word, [
+    (String::from("   fly me   to   the moon  "), 4),
+    (String::from("luffy is still joyboy"), 6),
+]);
+
+test_cases!(Solution, longest_common_prefix, [
+    (vec![String::from("flower"), String::from("flow"), String::from("flat")], String::from("fl")),
+    (vec![String::from("flower"), String::from("low"), String::from("flat")], String::from("")),
+]);
+
+test_cases!(Solution, reverse_words, [
+    (String::from("the sky is blue"), String::from("blue is sky the")),
+    (String::from("  hello world  "), String::from("world hello")),
+]);
