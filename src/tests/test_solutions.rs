@@ -307,3 +307,10 @@ test_cases!(Solution, reverse_words, [
     (String::from("the sky is blue"), String::from("blue is sky the")),
     (String::from("  hello world  "), String::from("world hello")),
 ]);
+
+test_cases_multi!(Solution, search_range, [
+    ((vec![5,7,7,8,8,10], 8), vec![3, 4]),
+    ((vec![5,7,7,8,8,10], 6), vec![-1, -1]),
+    ((vec![], 8), vec![-1, -1
+    ]),
+]);

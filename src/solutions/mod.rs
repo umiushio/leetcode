@@ -32,3 +32,4 @@ pub mod lru_cache;
 pub mod length_of_last_word;
 pub mod longest_common_prefix;
 pub mod reverse_words;
+pub mod search_range;
